@@ -1,0 +1,25 @@
+version: '3.3'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: podcast_api_web
+    env_file:
+      - .env
+    command: >
+      sh -c "python manage.py collectstatic --noinput &&
+             gunicorn core.wsgi:application --bind 0.0.0.0:8000 --workers 6"
+    ports:
+      - "${DJANGO_PORT}:8000"
+    restart: always
+    networks:
+      - podcast_api_network
+    volumes:
+      - .:/app
+      - ./media:/app/media
+      - ./static:/app/static:delegated
+
+networks:
+  podcast_api_network:
