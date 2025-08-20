@@ -31,9 +31,9 @@ Layihənin kökünə `.env` faylı əlavə edin:
 SECRET_KEY=supersecretkey
 DJANGO_SETTINGS_MODULE=core.settings.production or core.settings.development
 DJANGO_PORT=8000
-ALLOWED_HOSTS=*
-CSRF_TRUSTED_ORIGINS=*
-CORS_ALLOWED_ORIGINS=*
+ALLOWED_HOSTS=* (127.0.0.1,localhost)
+CSRF_TRUSTED_ORIGINS=* (http://127.0.0.1:8000)
+CORS_ALLOWED_ORIGINS=* (http://127.0.0.1:8000,http://localhost:5173)
 
 SPOTIFY_CLIENT_ID=your_client_id_here (660b1fe647c14dcca3cccb9550c36451)
 SPOTIFY_CLIENT_SECRET=your_client_secret_here (85b825811a2844b2a7b63e02fddaabb0)
@@ -56,7 +56,7 @@ GET /podcasts/search?q={query}&limit=10&offset=0&market={market}
 ```
 Nümunə:
 ```env
-curl "http://127.0.0.1:8000/podcasts/search?q=technology&limit=5&market=AZ"
+curl "http://127.0.0.1:8000/api/v1/podcasts/search?q=technology&limit=5&market=AZ"
 ```
 
 ### 2. Podcast detalları
@@ -65,7 +65,7 @@ GET /podcasts/{showId}
 ```
 Nümunə:
 ```env
-curl "http://127.0.0.1:8000/podcasts/38bS44xjbVVZ3No3ByF1dJ"
+curl "http://127.0.0.1:8000/api/v1/podcasts/38bS44xjbVVZ3No3ByF1dJ"
 ```
 
 ### 3. Podcast epizodları
@@ -74,7 +74,7 @@ GET /podcasts/{showId}/episodes?limit=10&offset=0
 ```
 Nümunə:
 ```env
-curl "http://127.0.0.1:8000/podcasts/38bS44xjbVVZ3No3ByF1dJ/episodes?limit=3"
+curl "http://127.0.0.1:8000/api/v1/podcasts/38bS44xjbVVZ3No3ByF1dJ/episodes?limit=3"
 ```
 
 ## 📌 Qeydlər
